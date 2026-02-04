@@ -10,6 +10,7 @@ public class UsersController : TechLibraryBaseController {
 
     [HttpPost]
     [ProducesResponseType(typeof(UserPostResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ErrorMessagesResponse), StatusCodes.Status400BadRequest)]
     public IActionResult Create([FromServices] ICreateUserUseCase useCase, [FromBody] UserPostRequest request)
     {
         var response = useCase.Execute(request);
