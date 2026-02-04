@@ -1,3 +1,4 @@
+using TechLibrary.Api.Filters;
 using TechLibrary.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerGen();
+
+// Filters
+builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 
 // Services
 builder.Services.AddApplication();
