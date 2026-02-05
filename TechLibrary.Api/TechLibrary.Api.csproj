@@ -4,7 +4,16 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>0fa677c5-0043-405b-a333-ae06c577202a</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.Development.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Development.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
@@ -15,6 +24,7 @@
     <ProjectReference Include="..\TechLibrary.Application\TechLibrary.Application.csproj" />
     <ProjectReference Include="..\TechLibrary.Communication\TechLibrary.Communication.csproj" />
     <ProjectReference Include="..\TechLibrary.Exception\TechLibrary.Exception.csproj" />
+    <ProjectReference Include="..\TechLibrary.Infrastructure\TechLibrary.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
