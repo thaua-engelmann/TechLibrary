@@ -3,8 +3,8 @@ using TechLibrary.Communication.Responses;
 using TechLibrary.Domain.Entities;
 using TechLibrary.Domain.Repositories;
 using TechLibrary.Domain.Repositories.Users;
-using TechLibrary.Exception;
 using TechLibrary.Exception.Exceptions;
+using TechLibrary.Infrastructure.Security.Cryptography;
 
 namespace TechLibrary.Application.UseCases.Users.Create;
 
@@ -14,7 +14,13 @@ public class CreateUserUseCase(IUsersWriteOnlyRepository repository, IUnitOfWork
     {
         Validate(request);
 
-        var entity = new User { Name = request.Name };
+        var cryptography = new BCryptAlgorithm();
+
+        var entity = new User { 
+            Name = request.Name,
+            Password = cryptography.HashPassword(request.Password)
+        };
+
         await repository.Add(entity);
         await unitOfWork.Commit();
 

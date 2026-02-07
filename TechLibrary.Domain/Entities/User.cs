@@ -2,5 +2,6 @@
 public class User
 {
     public Guid Id { get; private set; } = Guid.NewGuid();  
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; set; } = string.Empty;
+    public required string Password { get; set; } = string.Empty;
 }
