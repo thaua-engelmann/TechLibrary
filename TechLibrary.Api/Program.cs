@@ -13,7 +13,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 
 // Filters
-builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
 
 // Services
 builder.Services.AddApplication();
