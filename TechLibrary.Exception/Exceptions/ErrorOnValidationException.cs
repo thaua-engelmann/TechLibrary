@@ -12,4 +12,8 @@ public class ErrorOnValidationException : TechLibraryException
     {
         ErrorMessages = messages.ToList().AsReadOnly();
     }
+    public ErrorOnValidationException(string message)
+    {
+        ErrorMessages = [message];
+    }
 }

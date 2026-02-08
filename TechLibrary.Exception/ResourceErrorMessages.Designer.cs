@@ -61,6 +61,15 @@ namespace TechLibrary.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail is being used already. .
+        /// </summary>
+        public static string EMAIL_EXISTS_ALREADY {
+            get {
+                return ResourceManager.GetString("EMAIL_EXISTS_ALREADY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unknown error happened..
         /// </summary>
         public static string UNKNOWN_ERROR {
