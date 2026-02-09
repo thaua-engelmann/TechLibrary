@@ -1,29 +1,29 @@
-﻿using TechLibrary.Communication.Requests;
+﻿using TechLibrary.Application.Security;
+using TechLibrary.Communication.Requests;
 using TechLibrary.Communication.Responses;
 using TechLibrary.Domain.Entities;
 using TechLibrary.Domain.Repositories;
 using TechLibrary.Domain.Repositories.Users;
 using TechLibrary.Exception;
 using TechLibrary.Exception.Exceptions;
-using TechLibrary.Infrastructure.Security.Cryptography;
 
 namespace TechLibrary.Application.UseCases.Users.Create;
 
 public class CreateUserUseCase(
+    IUnitOfWork unitOfWork,
+    IPasswordHasher passwordHasher,
     IUsersWriteOnlyRepository writeOnlyRepository,
-    IUsersReadOnlyRepository readOnlyRepository,
-    IUnitOfWork unitOfWork) : ICreateUserUseCase
+    IUsersReadOnlyRepository readOnlyRepository) : ICreateUserUseCase
 {
     public async Task<UserPostResponse> Execute(UserPostRequest request)
     {
         await Validate(request);
 
-        var cryptography = new BCryptAlgorithm();
-
-        var entity = new User { 
+        var entity = new User
+        {
             Name = request.Name,
             Email = request.Email,
-            Password = cryptography.HashPassword(request.Password)
+            Password = passwordHasher.HashPassword(request.Password)
         };
 
         await writeOnlyRepository.Add(entity);

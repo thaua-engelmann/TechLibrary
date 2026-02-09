@@ -6,6 +6,8 @@ using TechLibrary.Domain.Repositories.Users;
 using TechLibrary.Infrastructure.Repositories.Users;
 using TechLibrary.Domain.Repositories;
 using TechLibrary.Infrastructure.Repositories;
+using TechLibrary.Application.Security;
+using TechLibrary.Infrastructure.Security.Cryptography;
 
 namespace TechLibrary.Infrastructure;
 
@@ -27,6 +29,7 @@ public static class DependencyInjectionExtension
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IUsersWriteOnlyRepository, UsersWriteOnlyRepository>();
         services.AddScoped<IUsersReadOnlyRepository, UsersReadOnlyRepository>();
     } 
