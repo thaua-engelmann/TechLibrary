@@ -51,7 +51,7 @@ public class CreateUserUseCase(
 
         if (isEmailUsed)
         {
-            throw new ErrorOnValidationException(ResourceErrorMessages.EMAIL_EXISTS_ALREADY);
+            throw new ConflictException(ResourceErrorMessages.EMAIL_EXISTS_ALREADY);
         }
     }
 }
