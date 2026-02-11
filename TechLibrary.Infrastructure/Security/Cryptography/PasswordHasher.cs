@@ -1,6 +1,7 @@
 ﻿namespace TechLibrary.Infrastructure.Security.Cryptography;
+
 using BCrypt.Net;
-using TechLibrary.Application.Security;
+using TechLibrary.Application.Security.Interfaces;
 
 public class PasswordHasher : IPasswordHasher
 {
