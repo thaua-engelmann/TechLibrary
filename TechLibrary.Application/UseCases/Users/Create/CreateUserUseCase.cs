@@ -1,4 +1,4 @@
-﻿using TechLibrary.Application.Security;
+﻿using TechLibrary.Application.Security.Interfaces;
 using TechLibrary.Communication.Requests;
 using TechLibrary.Communication.Responses;
 using TechLibrary.Domain.Entities;
@@ -12,6 +12,7 @@ namespace TechLibrary.Application.UseCases.Users.Create;
 public class CreateUserUseCase(
     IUnitOfWork unitOfWork,
     IPasswordHasher passwordHasher,
+    IJwtTokenGenerator jwtTokenGenerator,
     IUsersWriteOnlyRepository writeOnlyRepository,
     IUsersReadOnlyRepository readOnlyRepository) : ICreateUserUseCase
 {
@@ -23,16 +24,18 @@ public class CreateUserUseCase(
         {
             Name = request.Name,
             Email = request.Email,
-            Password = passwordHasher.HashPassword(request.Password)
+            Password = passwordHasher.HashPassword(request.Password),
         };
 
         await writeOnlyRepository.Add(entity);
         await unitOfWork.Commit();
 
+        var token = jwtTokenGenerator.Generate(entity);
+
         return new UserPostResponse
         {
             Name = entity.Name,
-            AccessToken = "MockedAccessToken"
+            AccessToken = token
         };
     }
 
