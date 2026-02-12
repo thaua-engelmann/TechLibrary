@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TechLibrary.Application.UseCases.Auth.Login;
 using TechLibrary.Application.UseCases.Users.Create;
 
 namespace TechLibrary.Application;
@@ -13,5 +14,6 @@ public static class DependencyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
+        services.AddScoped<ILoginUseCase, LoginUseCase>();
     }
 }
