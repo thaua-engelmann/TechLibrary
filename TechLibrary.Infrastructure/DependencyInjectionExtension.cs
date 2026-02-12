@@ -32,13 +32,13 @@ public static class DependencyInjectionExtension
     private static void AddSecurity(IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection("Jwt"));
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
     }
 
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IUsersWriteOnlyRepository, UsersWriteOnlyRepository>();
         services.AddScoped<IUsersReadOnlyRepository, UsersReadOnlyRepository>();
     }
