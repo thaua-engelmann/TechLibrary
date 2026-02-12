@@ -120,6 +120,9 @@
   <data name="EMAIL_EXISTS_ALREADY" xml:space="preserve">
     <value>E-mail is being used already. </value>
   </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>E-mail or password is invalid.</value>
+  </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>An unknown error happened.</value>
   </data>
