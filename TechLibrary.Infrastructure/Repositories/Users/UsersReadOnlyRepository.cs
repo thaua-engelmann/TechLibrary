@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TechLibrary.Domain.Entities;
 using TechLibrary.Domain.Repositories.Users;
 using TechLibrary.Infrastructure.DataAccess;
 
@@ -8,5 +9,8 @@ internal class UsersReadOnlyRepository(TechLibraryDbContext dbContext) : IUsersR
 {
     public async Task<bool> EmailExistsAlready(string email) => 
         await dbContext.Users.AnyAsync(u => u.Email == email);
+
+    public async Task<User?> GetByEmail(string email) =>
+        await dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email);
 
 }

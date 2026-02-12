@@ -1,5 +1,8 @@
-﻿namespace TechLibrary.Domain.Repositories.Users;
+﻿using TechLibrary.Domain.Entities;
+
+namespace TechLibrary.Domain.Repositories.Users;
 public interface IUsersReadOnlyRepository
 {
     public Task<bool> EmailExistsAlready(string email);
+    public Task<User?> GetByEmail(string email);
 }
